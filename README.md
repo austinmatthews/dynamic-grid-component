@@ -1,5 +1,4 @@
 # Dynamic Grid Component
--------------------------------------
 
 This project implements a dynamic and reusable grid component, built with **Vue 3** and the **Composition API**. 
 The grid component supports core features like searching, sorting, multi-selection, and exporting data. 
