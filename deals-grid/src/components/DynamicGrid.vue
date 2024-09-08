@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="row in rows" :key="row.id">
+        <tr v-for="row in filteredRows" :key="row.id">
           <td v-for="column in columns" :key="column.key">{{ row[column.key] }}</td>
         </tr>
       </tbody>
@@ -19,9 +19,10 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import mockDeals from '../mockDeals.json';
 
+  const props = defineProps(['searchQuery']);
   const rows = ref(mockDeals);
   const sortKey = ref('');
   const sortOrder = ref('asc');
@@ -55,10 +56,19 @@
       }
     });
   }
+
+  const filteredRows = computed(() => {
+    return rows.value.filter((row) =>
+      Object.values(row).some((value) =>
+        String(value).toLowerCase().includes(props.searchQuery.toLowerCase())
+      )
+    );
+  });
 </script>
 
 <style lang="scss">
   @import '../styles.scss';
+
   .dynamic-grid {
     width: 100%;
     table {
@@ -67,7 +77,7 @@
       border-collapse: collapse;
       th {
         cursor: pointer;
-        padding: 10px;
+        padding: 1rem;
         background-color: $primary-color;
         color: $tertiary-color;
       }
@@ -75,8 +85,8 @@
         background-color: lighten($primary-color, 5%);
       }
       td {
-        padding: 10px;
-        min-width: 45px;
+        padding: 0.75rem;
+        min-width: 3rem;
         text-align: center;
       }
       tr:hover {
