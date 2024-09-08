@@ -1,0 +1,50 @@
+[
+    {
+      "id": 1,
+      "issuer_name": "Company A",
+      "deal_name": "Deal A",
+      "bloomberg_id": "B123",
+      "total": 1000000.0,
+      "industry": "Finance",
+      "status": "Active",
+      "analysts": ["Analyst 1", "Analyst 2"],
+      "doc_count": 15,
+      "custom_deal_identifiers": ["C123", "C124"]
+    },
+    {
+      "id": 2,
+      "issuer_name": "Company B",
+      "deal_name": "Deal B",
+      "bloomberg_id": "B456",
+      "total": 2000000.0,
+      "industry": "Technology",
+      "status": "Pending",
+      "analysts": ["Analyst 3"],
+      "doc_count": 5,
+      "custom_deal_identifiers": ["C223", "C224"]
+    },
+    {
+      "id": 3,
+      "issuer_name": "Company C",
+      "deal_name": "Deal C",
+      "bloomberg_id": "B789",
+      "total": 3000000.0,
+      "industry": "Healthcare",
+      "status": "Closed",
+      "analysts": ["Analyst 4", "Analyst 5", "Analyst 6"],
+      "doc_count": 10,
+      "custom_deal_identifiers": ["C323", "C324", "C325"]
+    },
+    {
+      "id": 4,
+      "issuer_name": "Company D",
+      "deal_name": "Deal D",
+      "bloomberg_id": "B987",
+      "total": 4000000.0,
+      "industry": "Energy",
+      "status": "Active",
+      "analysts": ["Analyst 7", "Analyst 8"],
+      "doc_count": 8,
+      "custom_deal_identifiers": ["C423"]
+    }
+  ]

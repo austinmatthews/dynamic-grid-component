@@ -1,9 +1,15 @@
-<script setup>
-  import GridComponent from './components/GridComponent.vue';
-</script>
-
 <template>
-  <GridComponent />
+  <div id="app">
+    <DynamicGrid />
+  </div>
 </template>
 
-<style scoped></style>
+<script setup>
+  import DynamicGrid from './components/DynamicGrid.vue';
+</script>
+
+<style lang="scss">
+  #app {
+    text-align: center;
+  }
+</style>
