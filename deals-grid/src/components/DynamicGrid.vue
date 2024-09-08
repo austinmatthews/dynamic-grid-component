@@ -21,6 +21,7 @@
 <script setup>
   import { ref } from 'vue';
   import mockDeals from '../mockDeals.json';
+
   const rows = ref(mockDeals);
   const sortKey = ref('');
   const sortOrder = ref('asc');
@@ -55,3 +56,30 @@
     });
   }
 </script>
+
+<style lang="scss">
+  @import '../styles.scss';
+  .dynamic-grid {
+    width: 100%;
+    table {
+      background-color: lighten($background-color, 5%);
+      border-collapse: collapse;
+      th {
+        cursor: pointer;
+        padding: 10px;
+        background-color: $primary-color;
+      }
+      th:hover {
+        background-color: lighten($primary-color, 5%);
+      }
+      td {
+        padding: 10px;
+        min-width: 45px;
+        text-align: center;
+      }
+      tr:hover {
+        background-color: lighten($background-color, 10%);
+      }
+    }
+  }
+</style>
