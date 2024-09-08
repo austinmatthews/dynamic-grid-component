@@ -17,27 +17,20 @@ It's designed to be generic and customizable for different data models, followin
 
 The grid is populated with a dynamic data model, such as:
 
-`[
+```json
+[
   { "key": "id", "type": "int", "label": "ID" },
-  
   { "key": "issuer_name", "type": "string", "label": "Issuer" },
-  
   { "key": "deal_name", "type": "string", "label": "Deal" },
-  
   { "key": "bloomberg_id", "type": "string", "label": "Bloomberg ID" },
-  
   { "key": "total", "type": "decimal", "label": "Total" },
-  
   { "key": "industry", "type": "string", "label": "Industry" },
-  
   { "key": "status", "type": "string", "label": "Status" },
-  
   { "key": "analysts", "type": "string[]", "label": "Analysts" },
-  
   { "key": "doc_count", "type": "int", "label": "Docs" },
-  
   { "key": "custom_deal_identifiers", "type": "string[]", "label": "Identifiers" }
-]`
+]
+```
 
 ### Technology Stack
 
