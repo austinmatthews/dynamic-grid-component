@@ -1,9 +1,12 @@
 // Variables
-$primary-color: blue;
-$background-color: darkblue;
-$table-color: lighten(darkblue, 5%);
-$hover-color: lighten(blue, 5%);
-$text-color: rgba(255, 255, 255);
+$primary-color: #002745;
+$secondary-color: #334968;
+$tertiary-color: #BEC8CF;
+$button-color: #00A3DA;
+$background-color: darken($tertiary-color, 60%);
+$table-color: $tertiary-color;
+$button-hover-color: $primary-color, 10%;
+$text-color: $primary-color;
 $focus-color: -webkit-focus-ring-color;
 
 // Root styles with mixins
@@ -14,6 +17,14 @@ $focus-color: -webkit-focus-ring-color;
   color-scheme: dark;
   color: $text-color;
   background-color: $background-color;
+}
+
+// App container styles
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
 // Body styles using flex-row mixin
@@ -44,14 +55,8 @@ button {
   transition: border-color 0.25s;
 
   &:hover {
-    border-color: $hover-color;
+    border-color: $button-hover-color;
   }
 }
 
-// App container styles
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+

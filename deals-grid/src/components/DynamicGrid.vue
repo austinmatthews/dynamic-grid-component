@@ -62,12 +62,14 @@
   .dynamic-grid {
     width: 100%;
     table {
-      background-color: lighten($background-color, 5%);
+      border-spacing: 0;
+      background-color: $table-color;
       border-collapse: collapse;
       th {
         cursor: pointer;
         padding: 10px;
         background-color: $primary-color;
+        color: $tertiary-color;
       }
       th:hover {
         background-color: lighten($primary-color, 5%);
@@ -78,7 +80,7 @@
         text-align: center;
       }
       tr:hover {
-        background-color: lighten($background-color, 10%);
+        background-color: darken($table-color, 10%);
       }
     }
   }
