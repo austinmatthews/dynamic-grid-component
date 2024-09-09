@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <input type="text" v-model="searchQuery" placeholder="Search deals..." />
-    <DynamicGrid :searchQuery="searchQuery" />
+    <DynamicGrid :columns="columns" :searchQuery="searchQuery" />
   </div>
 </template>
 
@@ -10,6 +10,19 @@
   import DynamicGrid from './components/DynamicGrid.vue';
 
   const searchQuery = ref('');
+
+  const columns = [
+    { key: 'id', label: 'ID' },
+    { key: 'issuer_name', label: 'Issuer' },
+    { key: 'deal_name', label: 'Deal' },
+    { key: 'bloomberg_id', label: 'Bloomberg ID' },
+    { key: 'total', label: 'Total' },
+    { key: 'industry', label: 'Industry' },
+    { key: 'status', label: 'Status' },
+    { key: 'analysts', label: 'Analysts' },
+    { key: 'doc_count', label: 'Docs' },
+    { key: 'custom_deal_identifiers', label: 'Identifiers' },
+  ];
 </script>
 
 <style lang="scss">

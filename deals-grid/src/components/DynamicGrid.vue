@@ -4,7 +4,7 @@
     <table>
       <thead>
         <tr>
-          <th v-for="column in columns" :key="column.key" @click="sortBy(column.key)">
+          <th v-for="column in props.columns" :key="column.key" @click="sortBy(column.key)">
             {{ column.label }}
             <span v-if="sortKey === column.key">{{ sortOrder === 'asc' ? '↑' : '↓' }}</span>
           </th>
@@ -16,7 +16,7 @@
           :key="row.id"
           @click="toggleSelection(row.id)"
           :class="{ selected: selectedDeals.includes(row.id) }">
-          <td v-for="column in columns" :key="column.key">{{ row[column.key] }}</td>
+          <td v-for="column in props.columns" :key="column.key">{{ row[column.key] }}</td>
         </tr>
       </tbody>
     </table>
@@ -29,24 +29,15 @@
   import mockDeals from '../mockDeals.json';
   import TaskPane from './TaskPane.vue';
 
-  const props = defineProps(['searchQuery']);
+  const props = defineProps({
+    searchQuery: String,
+    columns: Array,
+  });
+
   const rows = ref(mockDeals);
   const sortKey = ref('');
   const sortOrder = ref('asc');
   const selectedDeals = ref([]);
-
-  const columns = [
-    { key: 'id', label: 'ID' },
-    { key: 'issuer_name', label: 'Issuer' },
-    { key: 'deal_name', label: 'Deal' },
-    { key: 'bloomberg_id', label: 'Bloomberg ID' },
-    { key: 'total', label: 'Total' },
-    { key: 'industry', label: 'Industry' },
-    { key: 'status', label: 'Status' },
-    { key: 'analysts', label: 'Analysts' },
-    { key: 'doc_count', label: 'Docs' },
-    { key: 'custom_deal_identifiers', label: 'Identifiers' },
-  ];
 
   function sortBy(key) {
     if (sortKey.value === key) {
@@ -87,13 +78,15 @@
   }
 
   function exportToCSV() {
-    const headers = columns.map((col) => col.label).join(',');
+    const headers = props.columns.map((col) => col.label).join(',');
     const rowsToExport =
       selectedDeals.value.length > 0
         ? rows.value.filter((deal) => selectedDeals.value.includes(deal.id))
         : rows.value;
 
-    const rowsData = rowsToExport.map((deal) => columns.map((col) => deal[col.key]).join(','));
+    const rowsData = rowsToExport.map((deal) =>
+      props.columns.map((col) => deal[col.key]).join(',')
+    );
 
     const csvContent = [headers, ...rowsData].join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
