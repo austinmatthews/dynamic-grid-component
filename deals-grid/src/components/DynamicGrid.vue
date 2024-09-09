@@ -10,22 +10,30 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="row in filteredRows" :key="row.id">
+        <tr
+          v-for="row in filteredRows"
+          :key="row.id"
+          @click="toggleSelection(row.id)"
+          :class="{ selected: selectedDeals.includes(row.id) }">
           <td v-for="column in columns" :key="column.key">{{ row[column.key] }}</td>
         </tr>
       </tbody>
     </table>
+    <TaskPane v-if="selectedDeals.length === 1" :selectedDeal="selectedDeal" />
   </div>
 </template>
 
 <script setup>
   import { ref, computed } from 'vue';
   import mockDeals from '../mockDeals.json';
+  import TaskPane from './TaskPane.vue';
 
   const props = defineProps(['searchQuery']);
   const rows = ref(mockDeals);
   const sortKey = ref('');
   const sortOrder = ref('asc');
+  const selectedDeals = ref([]);
+
   const columns = [
     { key: 'id', label: 'ID' },
     { key: 'issuer_name', label: 'Issuer' },
@@ -64,6 +72,18 @@
       )
     );
   });
+
+  const selectedDeal = computed(() => {
+    return rows.value.find((deal) => deal.id === selectedDeals.value[0]);
+  });
+
+  function toggleSelection(id) {
+    if (selectedDeals.value.includes(id)) {
+      selectedDeals.value = selectedDeals.value.filter((dealId) => dealId !== id);
+    } else {
+      selectedDeals.value.push(id);
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -91,6 +111,9 @@
       }
       tr:hover {
         background-color: darken($table-color, 10%);
+      }
+      .selected {
+        background-color: darken($table-color, 30%);
       }
     }
   }

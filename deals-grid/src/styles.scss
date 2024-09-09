@@ -5,7 +5,7 @@ $tertiary-color: #BEC8CF;
 $button-color: #00A3DA;
 $background-color: darken($tertiary-color, 60%);
 $table-color: $tertiary-color;
-$button-hover-color: $primary-color, 10%;
+$button-hover-color: lighten($primary-color, 10%);
 $text-color: $primary-color;
 $focus-color: -webkit-focus-ring-color;
 
@@ -32,7 +32,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  min-width: 20rem; 
+  min-width: 20rem;
   min-height: 100vh;
 }
 
