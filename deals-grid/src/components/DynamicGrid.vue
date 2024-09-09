@@ -1,5 +1,6 @@
 <template>
   <div class="dynamic-grid">
+    <button @click="exportToCSV">Export to CSV</button>
     <table>
       <thead>
         <tr>
@@ -83,6 +84,22 @@
     } else {
       selectedDeals.value.push(id);
     }
+  }
+
+  function exportToCSV() {
+    const headers = columns.map((col) => col.label).join(',');
+    const rowsData = filteredRows.value.map((deal) =>
+      columns.map((col) => deal[col.key]).join(',')
+    );
+
+    const csvContent = [headers, ...rowsData].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', 'deals.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 </script>
 

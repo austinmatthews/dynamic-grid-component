@@ -41,14 +41,16 @@ h1 {
 
 button {
   border-radius: 1rem;
-  border: 1px solid transparent;
+  margin-bottom: 10px;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  font-weight: 500;
+  border: none;
+  background-color: $button-color;
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.3s;
 
   &:hover {
-    border-color: $button-hover-color;
+    background-color: darken($button-color, 10%);
   }
 }
