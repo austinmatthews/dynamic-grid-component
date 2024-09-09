@@ -16,11 +16,13 @@
           :key="row.id"
           @click="toggleSelection(row.id)"
           :class="{ selected: selectedDeals.includes(row.id) }">
-          <td v-for="column in props.columns" :key="column.key">{{ row[column.key] }}</td>
+          <td v-for="column in props.columns" :key="column.key">
+            {{ formatValue(row[column.key]) }}
+          </td>
         </tr>
       </tbody>
     </table>
-    <TaskPane v-if="selectedDeals.length === 1" :selectedDeal="selectedDeal" />
+    <TaskPane v-if="selectedDeals.length === 1" :data="selectedDeal" :columns="props.columns" />
   </div>
 </template>
 
@@ -38,6 +40,13 @@
   const sortKey = ref('');
   const sortOrder = ref('asc');
   const selectedDeals = ref([]);
+
+  function formatValue(value) {
+    if (Array.isArray(value)) {
+      return value.join(', ');
+    }
+    return value;
+  }
 
   function sortBy(key) {
     if (sortKey.value === key) {
@@ -82,10 +91,15 @@
     const rowsToExport =
       selectedDeals.value.length > 0
         ? rows.value.filter((deal) => selectedDeals.value.includes(deal.id))
-        : rows.value;
+        : filteredRows.value;
 
     const rowsData = rowsToExport.map((deal) =>
-      props.columns.map((col) => deal[col.key]).join(',')
+      props.columns
+        .map((col) => {
+          const value = deal[col.key];
+          return Array.isArray(value) ? value.join(', ') : value;
+        })
+        .join(',')
     );
 
     const csvContent = [headers, ...rowsData].join('\n');
