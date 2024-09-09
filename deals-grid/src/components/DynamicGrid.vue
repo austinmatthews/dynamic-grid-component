@@ -92,6 +92,8 @@
   .dynamic-grid {
     width: 100%;
     table {
+      width: 100%;
+      table-layout: fixed;
       border-spacing: 0;
       background-color: $table-color;
       border-collapse: collapse;
