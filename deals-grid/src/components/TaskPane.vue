@@ -23,7 +23,6 @@
 <style lang="scss">
   @import '../styles.scss';
   .task-pane {
-    border: 1px solid #ddd;
     padding: 10px;
     margin-top: 10px;
     background-color: $table-color;
