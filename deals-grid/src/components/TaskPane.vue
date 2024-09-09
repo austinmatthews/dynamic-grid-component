@@ -3,7 +3,7 @@
     <h3>Details</h3>
     <ul>
       <li v-for="(value, key) in data" :key="key">
-        <strong>{{ getLabel(key) }}:</strong>
+        <strong>{{ getLabel(key) }}: </strong>
         <span>{{ formatValue(value) }}</span>
       </li>
     </ul>
