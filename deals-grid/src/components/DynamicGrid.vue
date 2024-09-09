@@ -88,9 +88,12 @@
 
   function exportToCSV() {
     const headers = columns.map((col) => col.label).join(',');
-    const rowsData = filteredRows.value.map((deal) =>
-      columns.map((col) => deal[col.key]).join(',')
-    );
+    const rowsToExport =
+      selectedDeals.value.length > 0
+        ? rows.value.filter((deal) => selectedDeals.value.includes(deal.id))
+        : rows.value;
+
+    const rowsData = rowsToExport.map((deal) => columns.map((col) => deal[col.key]).join(','));
 
     const csvContent = [headers, ...rowsData].join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
