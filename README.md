@@ -5,6 +5,7 @@ The grid component supports core features like searching, sorting, multi-selecti
 following modern frontend development practices using **Vite** and **SCSS**.
 
 ## Table of Contents
+- [Live Demo](#live-demo)
 - [Features](#features)
 - [Data Model Example](#data-model-example)
 - [Technology Stack](#technology-stack)
@@ -16,6 +17,9 @@ following modern frontend development practices using **Vite** and **SCSS**.
 - [Testing](#testing)
   - [Running Tests](#running-tests)
   - [Tests](#tests)
+
+## Live Demo
+- Check out the live demo of the project at https://dealsgrid.netlify.app/.
 
 ## Features
 
